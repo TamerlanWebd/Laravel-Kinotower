@@ -12,7 +12,11 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             CountrySeeder::class,
             CategorySeeder::class,
-             AdminSeeder::class,
+            FilmSeeder::class,
+            UserSeeder::class,
+            ReviewSeeder::class,
+            RatingSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }

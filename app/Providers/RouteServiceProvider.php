@@ -21,10 +21,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->routes(function () {
-            Route::middleware('admin')
-                ->prefix('admin')
-                ->group(base_path('routes/admin.php'));
-        });
+        // Маршруты админки регистрируются в bootstrap/app.php
     }
 }

@@ -4,67 +4,93 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Вход в админ панель</title>
-
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <style>
+        :root {
+            --color-neo-primary: #4ECDC4;
+            --color-neo-secondary: #FFE66D;
+            --color-neo-dark: #2C3E50;
+            --shadow-hard: 4px 4px 0 #000;
+        }
+        .neo-body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .neo-card {
+            background: white;
+            border: 4px solid black;
+            border-radius: 8px;
+            box-shadow: var(--shadow-hard);
+        }
+        .neo-input {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid black;
+            border-radius: 4px;
+            font-weight: bold;
+            background: white;
+        }
+        .neo-btn-primary {
+            background: var(--color-neo-primary);
+            color: black;
+            border: 3px solid black;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: var(--shadow-hard);
+            transition: all 0.2s;
+        }
+        .neo-btn-primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #000;
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        <b>KinoTower</b> Admin
+<body class="neo-body flex items-center justify-center">
+
+<div class="w-full max-w-md p-4">
+    <div class="text-center mb-6">
+        <h1 class="text-5xl font-black text-black drop-shadow-[3px_3px_0_#fff]">KinoTower</h1>
+        <span class="bg-black text-white px-2 py-1 text-sm font-bold uppercase">Admin Panel</span>
     </div>
 
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Войдите в систему</p>
+    <div class="neo-card p-8">
+        <p class="text-xl font-bold mb-6 text-center">Войдите в систему</p>
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+        @if ($errors->any())
+            <div class="bg-[var(--color-neo-secondary)] text-white border-3 border-black p-3 rounded-lg mb-4 font-bold shadow-[var(--shadow-hard)]">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            <form action="{{ route('admin.login.submit') }}" method="POST">
-                @csrf
-                <div class="input-group mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
+        <form action="{{ route('admin.login.submit') }}" method="POST" class="space-y-4">
+            @csrf
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-envelope text-black"></i>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Пароль" required>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
+                <input type="email" name="email" class="neo-input pl-10" placeholder="Email" value="{{ old('email') }}" required>
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-lock text-black"></i>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Войти</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                <input type="password" name="password" class="neo-input pl-10" placeholder="Пароль" required>
+            </div>
+
+            <button type="submit" class="neo-btn-primary w-full text-lg">
+                Поехали!
+            </button>
+        </form>
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 </body>
 </html>

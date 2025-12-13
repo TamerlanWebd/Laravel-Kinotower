@@ -1,0 +1,25 @@
+/* Миниатюры постеров: единый размер и аккуратный вид */
+.film-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ratio-2x3 {
+    position: relative;
+    width: 100%;
+    padding-top: 150%; /* 2:3 соотношение */
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    background: #f8f9fa;
+}
+
+.ratio-2x3 > img,
+.ratio-2x3 > div {
+    position: absolute;
+    inset: 0;
+}
+

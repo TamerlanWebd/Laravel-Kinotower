@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Показать форму входа
     public function index()
     {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.index');
+        }
+        
         return view('admin.auth.login');
     }
 
-    // Обработка входа
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -32,7 +34,6 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    // Выход
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();

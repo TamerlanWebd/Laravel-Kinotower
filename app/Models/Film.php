@@ -10,8 +10,15 @@ class Film extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'name', 'country_id', 'duration', 'year_of_issue', 
-        'age', 'link_img', 'link_kinopoisk', 'link_video'
+        'name',
+        'description',
+        'country_id',
+        'duration',
+        'year_of_issue',
+        'age',
+        'link_img',
+        'link_kinopoisk',
+        'link_video',
     ];
     
     // Отношение: фильм принадлежит одной стране

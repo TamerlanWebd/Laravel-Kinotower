@@ -6,6 +6,55 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    
+    --color-neo-main: #FFDEE9;
+    --color-neo-accent: #B5FFFC;
+    --color-neo-primary: #4ECDC4;
+    --color-neo-secondary: #FF6B6B;
+    --color-neo-yellow: #FFE66D;
+    --color-neo-dark: #222;
+    
+    --shadow-hard: 4px 4px 0px 0px #000;
+    --shadow-hard-lg: 8px 8px 0px 0px #000;
+}
+
+@layer components {
+    .neo-body {
+        @apply bg-gradient-to-br from-[var(--color-neo-main)] to-[var(--color-neo-accent)] min-h-screen font-sans text-[var(--color-neo-dark)];
+    }
+
+    .neo-card {
+        @apply bg-white border-3 border-black rounded-xl shadow-[var(--shadow-hard)];
+    }
+
+    .neo-input {
+        @apply w-full border-3 border-black rounded-lg px-4 py-2 font-bold focus:outline-none focus:bg-[var(--color-neo-yellow)] transition-colors placeholder-gray-500;
+    }
+
+    .neo-btn {
+        @apply inline-block border-3 border-black rounded-lg px-6 py-2 font-black uppercase tracking-wide cursor-pointer transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:-translate-y-1 hover:shadow-[var(--shadow-hard)];
+    }
+
+    .neo-btn-primary {
+        @apply neo-btn bg-[var(--color-neo-primary)] text-black;
+    }
+
+    .neo-btn-danger {
+        @apply neo-btn bg-[var(--color-neo-secondary)] text-white;
+    }
+
+    .neo-btn-success {
+        @apply neo-btn bg-[#96f2d7] text-black;
+    }
+    
+    .neo-table {
+        @apply w-full border-collapse text-left;
+    }
+    .neo-table th {
+        @apply border-3 border-black bg-[var(--color-neo-yellow)] p-3 font-black uppercase;
+    }
+    .neo-table td {
+        @apply border-3 border-black p-3 font-medium bg-white;
+    }
 }
