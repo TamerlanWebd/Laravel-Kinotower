@@ -7,11 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class FilmResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
@@ -24,10 +19,13 @@ class FilmResource extends JsonResource
             'link_kinopoisk' => $this->link_kinopoisk,
             'link_video' => $this->link_video,
             'created_at' => $this->created_at,
-            'country' => $this->country ? $this->country->name : null, 
+            'country' => $this->country ? [
+                'id' => $this->country->id,
+                'name' => $this->country->name,
+            ] : null,
             'categories' => CategoryFilmResource::collection($this->whenLoaded('categories')),
-            'ratingAvg' => $this->ratings()->avg('ball'),
-            'review' => $this->reviews()->count(),
+            'ratingAvg' => round($this->ratings()->avg('ball'), 1),
+            'reviewCount' => $this->reviews()->where('is_approved', 1)->count(),
         ];
     }
 }
