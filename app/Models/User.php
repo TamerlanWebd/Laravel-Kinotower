@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes,HasApiTokens;
 
     protected $fillable = [
         'fio',
@@ -32,19 +32,19 @@ class User extends Authenticatable
             'birthday' => 'date',
         ];
     }
-    
+
     // Отношение: пользователь принадлежит одному полу
     public function gender()
     {
         return $this->belongsTo(Gender::class);
     }
-    
+
     // Отношение: у пользователя может быть много отзывов
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
-    
+
     // Отношение: у пользователя может быть много оценок
     public function ratings()
     {
